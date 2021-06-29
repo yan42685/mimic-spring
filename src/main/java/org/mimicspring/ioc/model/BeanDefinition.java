@@ -8,10 +8,6 @@ import org.mimicspring.ioc.model.enums.BeanDefinitionSource;
 public class BeanDefinition {
     private String name;
     /**
-     * bean类的全限定名
-     */
-    private String fullClassName;
-    /**
      * bean的类型
      */
     private Class<?> beanClass;

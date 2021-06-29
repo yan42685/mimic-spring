@@ -40,7 +40,8 @@ public class BeanDefinitionRegistry {
             BeanDefinition existingDefinition = nameDefinitionMap.get(name);
             // 命名重复会导致冲突 (BeanDefinition中默认的name是类的simpleName)
             if (existingDefinition != null) {
-                log.error("bean name {} for bean class [{}] conflicts with existing bean class [{}]", name, definition.getFullClassName(), existingDefinition.getFullClassName());
+                log.error("bean name {} for bean class [{}] conflicts with existing bean class [{}]",
+                        name, definition.getBeanClass().getName(), existingDefinition.getBeanClass().getName());
                 throw new RuntimeException();
             }
             nameDefinitionMap.put(name, definition);
