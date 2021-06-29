@@ -7,8 +7,14 @@ import org.mimicspring.ioc.model.enums.BeanDefinitionSource;
 @Data
 public class BeanDefinition {
     private String name;
-    // 类的全限定名
+    /**
+     * bean类的全限定名
+     */
     private String fullClassName;
+    /**
+     * bean的类型
+     */
+    private Class<?> beanClass;
     private ScopeEnum scope;
     private boolean isLazyInit;
     private BeanDefinitionSource definitionSource;

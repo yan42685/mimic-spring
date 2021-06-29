@@ -4,10 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.mimicspring.ioc.model.BeanDefinition;
 import org.mimicspring.utils.ClassUtils;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -48,14 +46,14 @@ public class BeanDefinitionRegistry {
             nameDefinitionMap.put(name, definition);
 
             // 将bean的类型及其所有父类和接口注册到 typeDefinitionMap
-            Set<Class<?>> typeSet = getTypeSet(definition);
-            typeSet.forEach(type -> {
-                List<BeanDefinition> definitionSet = typeDefinitionMap.get(type);
-                if (definitionSet == null) {
-                    definitionSet = new CopyOnWriteArrayList<>();
+            List<Class<?>> typeList = getTypeList(definition);
+            typeList.forEach(type -> {
+                List<BeanDefinition> definitionList = typeDefinitionMap.get(type);
+                if (definitionList == null) {
+                    definitionList = new CopyOnWriteArrayList<>();
                 }
-                definitionSet.add(definition);
-                typeDefinitionMap.put(type, definitionSet);
+                definitionList.add(definition);
+                typeDefinitionMap.put(type, definitionList);
             });
         });
     }
@@ -64,13 +62,12 @@ public class BeanDefinitionRegistry {
     /**
      * 获取BeanDefinition的 class对象及其所有的父类和接口
      */
-    private Set<Class<?>> getTypeSet(final BeanDefinition beanDefinition) {
-        Set<Class<?>> classSet = new HashSet<>();
-
-        Class<?> beanClass = beanDefinition.getBeanClass();
-        classSet.add(beanClass);
-        classSet.addAll(ClassUtils.getAllSuperClassAndInterface(beanClass));
-        return classSet;
+    @SuppressWarnings("unchecked")
+    private List<Class<?>> getTypeList(BeanDefinition beanDefinition) {
+        Class<?> currentClass = beanDefinition.getBeanClass();
+        List<Class<?>> classes = (List<Class<?>>) ClassUtils.getAllSuperClassAndInterface(currentClass);
+        classes.add(currentClass);
+        return classes;
     }
 
 }
