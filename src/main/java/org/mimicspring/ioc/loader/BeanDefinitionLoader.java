@@ -1,7 +1,6 @@
 package org.mimicspring.ioc.loader;
 
-import cn.hutool.core.util.ClassUtil;
-import org.mimicspring.ioc.definition.BeanDefinition;
+import org.mimicspring.ioc.model.BeanDefinition;
 
 import java.util.Collections;
 import java.util.LinkedList;

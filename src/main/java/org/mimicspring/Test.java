@@ -13,6 +13,6 @@ public class Test {
 //            System.out.println(clazz.getName());
 //            return true;
 //        }));
-        System.out.println(ClassUtil.getPackage(Test.class));
+        System.out.println(Test.class.getCanonicalName());
     }
 }

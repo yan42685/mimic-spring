@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class BeanFactory {
-    /**
-     * key: fullClassName
-     */
-    public Map<String, List<Object>> beanMap = new ConcurrentHashMap<>();
+public interface BeanFactory {
 
-    public <T> T getBean(String fullClassName) {
-        return null;
-    }
+    <T> T getBean(String name, Class<T> clazz);
 
-    public <T> T getBean(String name, Class<T> clazz) {
-        return null;
-    }
+    <T> T getBean(Class<T> clazz);
+
+    Object getBean(String name);
+
+    boolean containsBean(String name);
+
+    boolean isSingleton(String name);
+
+    boolean isPrototype(String name);
 }

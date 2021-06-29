@@ -3,7 +3,7 @@ package org.mimicspring.ioc.core;
 import cn.hutool.core.util.ClassUtil;
 
 public class MimicSpringApplication {
-    private static ApplicationContext ctx;
+    private static ApplicationContext context;
     /**
      * IOC 容器启动入口
      */
@@ -12,10 +12,10 @@ public class MimicSpringApplication {
     }
 
     private static void initApplicationContext(Class<?> bootClass) {
-        ctx = new ApplicationContext();
+        context = new ApplicationContext();
         // 获取传入类型所在的package
         String basePackage = ClassUtil.getPackage(bootClass);
-        ctx.setBasePackage(basePackage);
+        context.setBasePackage(basePackage);
     }
 
 
